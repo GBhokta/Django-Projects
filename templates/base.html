@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A social media platform to connect with friends and share posts.">
+    <meta name="keywords" content="social media, posts, groups, friends, online community">
+    <meta name="author" content="YourName">
+    
+    <title>{% block title %}SocialMedia{% endblock title %}</title>
+    {% load static %}
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baskervville+SC&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/master.css' %}">
+    
+    <style>
+        /* Background Gradient Animation */
+        body {
+            background: linear-gradient(120deg, #1f93bf, #32a89e, #204b7a);
+            background-size: 600% 600%;
+            animation: gradientAnimation 15s ease infinite;
+            font-family: 'Baskervville', serif;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Navbar styling */
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff !important;
+        }
+
+        .navbar-dark .navbar-nav .nav-link {
+            color: #ffffff;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .navbar-dark .navbar-nav .nav-link:hover {
+            color: #a7dfd0;
+            text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.7);
+        }
+
+        .container {
+            margin-top: 2rem;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .navbar-nav .nav-item {
+                text-align: center;
+                margin-bottom: 10px;
+            }
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            font-size: 1.6rem;
+            font-weight: 300;
+            padding: 1rem 2rem;
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            background-image: linear-gradient(120deg, transparent 0%, transparent 50%, #fff 50%);
+            background-size: 220%;
+            transition: all 0.4s;
+        }
+
+        .btn--animated {
+            background-position: 100%;
+            color: #55c57a;
+            transform: translateX(1rem);
+        }
+
+        .btn--animated:hover {
+            background-position: 0%;
+            color: #fff;
+        }
+
+        /* Twinkling Effect */
+        .twinkling {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('path_to_your_twinkle_image.png') repeat;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+    </style>
+
+    {% block extra_css %}{% endblock extra_css %}
+</head>
+<body>
+    <div class="twinkling"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}">SocialMedia</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'posts:create' %}">Posts</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'groups:all' %}">Groups</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'groups:create' %}">Create Group</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'profiles:view_profile' user.username %}">Profile</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                        </li>
+                        <form id="logout-form" action="{% url 'accounts:logout' %}" method="post" class="d-none">
+                            {% csrf_token %}
+                        </form>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'accounts:login' %}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'accounts:signup' %}">Sign Up</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content Block -->
+    <div class="container mt-4">
+        {% block content %}
+        {% endblock content %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-auto py-3 bg-dark text-light">
+        <div class="container text-center">
+            <span>Built by <a href="#" class="text-light">YourName</a>. &copy; 2024 SocialMedia.</span>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
+
+    {% block extra_js %}{% endblock extra_js %}
+</body>
+</html>

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="thank-you-container text-center">
+    <h1 class="thank-you-title">Thank You for Visiting!</h1>
+    <p class="thank-you-message">We appreciate your time and hope you enjoyed your experience.</p>
+    <p class="thank-you-invite">Feel free to<a href="{% url 'home' %}" class="btn btn--animated btn--small"> explore more</a>
+          &nbsp &nbsp or visit us again soon!</p>
+</div>
+
+<style>
+    .thank-you-container {
+        margin-top: 50px;
+        padding: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .thank-you-title {
+        font-size: 2.5rem;
+        color: #ffffff;
+        margin-bottom: 20px;
+    }
+
+    .thank-you-message {
+        font-size: 1.2rem;
+        color: #ffffff;
+        margin-bottom: 20px;
+    }
+
+    .thank-you-invite {
+        font-size: 1.2rem;
+        color: #ffffff;
+    }
+
+    .thank-you-invite a {
+        text-decoration: none;
+    }
+
+    .thank-you-invite a:hover {
+        text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.7);
+    }
+
+    .btn--small {
+        padding: 0.5rem 0.5rem; /* Adjusted padding for a smaller button */
+        font-size: 1rem; /* Adjusted font size for a smaller button */
+    }
+    
+</style>
+{% endblock content %}

@@ -1,0 +1,67 @@
+/* master.css */
+
+/* Background Animation */
+body {
+    animation: backgroundAnimation 10s infinite alternate;
+}
+
+@keyframes backgroundAnimation {
+    0% { background-color: #f8f9fa; }
+    50% { background-color: #cce5ff; }
+    100% { background-color: #b3d9ff; }
+}
+
+/* Navbar */
+.navbar {
+    background-color: #007bff; /* Blue background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Drop shadow */
+}
+
+.navbar-brand {
+    color: #ffffff; /* White text color */
+    font-family: 'Baskervville SC', serif; /* Custom Google font */
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff; /* White text color */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #f0f0f0; /* Lighter white text color on hover */
+}
+
+/* Buttons */
+.btn {
+    background-color: #007bff; /* Blue background */
+    color: #ffffff; /* White text color */
+    border: none;
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Container */
+.container {
+    padding-top: 20px;
+}
+
+/* Custom Font */
+body, .navbar-brand {
+    font-family: 'Baskervville SC', serif; /* Custom Google font */
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.2rem; /* Adjust font size for smaller screens */
+    }
+}
+/* master.css */
+
+/* Font Family */
+body, .navbar-brand, .nav-link, .btn {
+    font-family: 'Times New Roman', Times, serif !important; /* Use !important to override other styles */
+}

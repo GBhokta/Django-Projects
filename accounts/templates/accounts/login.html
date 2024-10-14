@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block content %}
+<section class="section-book">
+    <div class="row">
+        <div class="book">
+            <div class="book__form">
+                <form action="" method="post" class="form">
+                    <div class="u-margin-bottom-medium">
+                        <h2 class="heading-secondary">
+                            Log In
+                        </h2>
+                    </div>
+
+                    {% csrf_token %}
+                    <div class="form__group">
+                        {% bootstrap_form form %}
+                    </div>
+
+                    <div class="form__group">
+                        <button type="submit" class="btn btn--green">Log In</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* General Styles */
+    .section-book {
+        padding: 60px 20px; /* Padding for the section */
+        background-color: rgba(255, 255, 255, 0.1); /* Light background */
+        border-radius: 15px; /* Rounded corners */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow */
+        margin: auto;
+        max-width: 600px; /* Max width for the form */
+    }
+
+    .heading-secondary {
+        color: #ffffff; /* White color for the heading */
+        font-size: 2.5rem; /* Size of the heading */
+        text-align: center;
+    }
+
+    /* Form Group Styles */
+    .form__group {
+        margin-bottom: 20px; /* Spacing between fields */
+        position: relative; /* For label positioning */
+    }
+
+    .form__input {
+        width: 100%; /* Full width input */
+        padding: 10px; /* Padding for inputs */
+        border: none; /* No border */
+        border-radius: 5px; /* Rounded corners */
+        font-size: 1rem; /* Font size */
+        background-color: #f7f7f7; /* Light background for inputs */
+        color: #333; /* Text color */
+        transition: border-color 0.3s; /* Transition for focus */
+    }
+
+    .form__input:focus {
+        outline: none; /* No outline */
+        border: 2px solid #28a745; /* Border color on focus */
+    }
+
+    /* Button Styles */
+    .btn--green {
+        background-color: #28a745; /* Green background */
+        border: none; /* No border */
+        border-radius: 5px; /* Rounded edges */
+        padding: 12px 20px; /* Padding for the button */
+        font-size: 1.1rem; /* Font size */
+        font-weight: 600; /* Font weight */
+        color: #ffffff; /* White text color */
+        cursor: pointer; /* Cursor on hover */
+        transition: all 0.3s ease; /* Transition for the button effects */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Box shadow */
+    }
+
+    .btn--green:hover {
+        background-color: #218838; /* Darker green on hover */
+        transform: translateY(-2px); /* Lift effect */
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); /* Increased shadow on hover */
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        .heading-secondary {
+            font-size: 2rem; /* Smaller font size for smaller screens */
+        }
+    }
+</style>
+
+<script>
+    // JavaScript for additional functionality can be added here if needed
+</script>
+{% endblock content %}

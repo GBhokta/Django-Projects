@@ -1,0 +1,11 @@
+<!-- profiles/templates/profiles/profile_view.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ profile.user.username }}'s Profile</h1>
+<img src="{{ profile.profile_picture.url }}" alt="Profile Picture" style="width: 150px; height: 150px;">
+<p><strong>Bio:</strong> {{ profile.bio }}</p>
+<p><strong>Location:</strong> {{ profile.location }}</p>
+<p><strong>Birth Date:</strong> {{ profile.birth_date }}</p>
+<a href="{% url 'profiles:edit_profile' %}">Edit Profile</a>
+{% endblock %}

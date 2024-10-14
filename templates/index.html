@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero__content">
+        <h1 class="hero__title">Welcome to SocialMedia!</h1>
+        <p class="hero__subtitle">Connect, Share, and Explore with Friends</p>
+        <p class="hero__description">
+            Join our vibrant community and share your moments, thoughts, and creativity. 
+            Whether you want to catch up with friends or discover new interests, 
+            SocialMedia is the perfect platform for you!
+        </p>
+        <a href="{% url 'accounts:signup' %}" class="btn btn--animated">Join Now</a>
+    </div>
+</section>
+
+<section class="features">
+    <h2 class="features__heading">Why Join Us?</h2>
+    <div class="features__list">
+        <div class="feature">
+            <h3 class="feature__title">Connect with Friends</h3>
+            <p class="feature__description">Easily stay in touch with friends and family, no matter where they are.</p>
+        </div>
+        <div class="feature">
+            <h3 class="feature__title">Share Your Moments</h3>
+            <p class="feature__description">Post photos, updates, and thoughts to share with your community.</p>
+        </div>
+        <div class="feature">
+            <h3 class="feature__title">Discover New Interests</h3>
+            <p class="feature__description">Explore groups, pages, and content that align with your passions.</p>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Hero Section */
+.hero {
+    background: linear-gradient(120deg, #1f93bf, #32a89e);
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.hero__title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero__subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.hero__description {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+/* Features Section */
+.features {
+    margin: 50px 0;
+    text-align: center;
+}
+
+.features__heading {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+.features__list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.feature {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    margin: 10px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.feature__title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.feature__description {
+    font-size: 1rem;
+}
+
+</style>
+{% endblock content %}

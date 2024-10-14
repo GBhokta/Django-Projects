@@ -1,0 +1,122 @@
+{% extends "group_base.html" %}
+{% load bootstrap3 %}
+
+{% block group_content %}
+<div class="container mt-5">
+    <div class="book">
+        <div class="book__form">
+            <form action="{% url 'groups:create' %}" method="post" id="groupForm" class="form">
+                {% csrf_token %}
+                <div class="u-margin-bottom-medium">
+                    <h2 class="heading-secondary text-center">
+                        Create a New Group
+                    </h2>
+                </div>
+
+                <div class="form__group">
+                    <input type="text" class="form__input" placeholder="Group Name" id="name" name="name" required>
+                    <label for="name" class="form__label">Group Name</label>
+                </div>
+
+                <div class="form__group">
+                    <textarea class="form__input" placeholder="Group Description" id="description" name="description" rows="4" required></textarea>
+                    <label for="description" class="form__label">Group Description</label>
+                </div>
+
+                <div class="form__group">
+                    <input type="text" class="form__input" placeholder="Add Members (optional)" id="members" name="members">
+                    <label for="members" class="form__label">Add Members (optional)</label>
+                </div>
+
+                <div class="form__group">
+                    <button type="submit" class="btn btn--green">Create Group &rarr;</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Styles for the group creation form */
+    .container {
+        background-color: rgba(255, 255, 255, 0.95); /* Light background for contrast */
+        border-radius: 12px; /* Smooth corners */
+        padding: 30px; /* Spacing inside container */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Soft shadow */
+        margin-bottom: 30px; /* Spacing below container */
+    }
+
+    .book {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .book__form {
+        width: 100%;
+        max-width: 500px; /* Limiting width for better appearance */
+    }
+
+    .heading-secondary {
+        font-family: 'Baskervville', serif;
+        color: #333;
+        font-size: 2rem;
+        margin-bottom: 20px; /* Space below heading */
+    }
+
+    .form__group {
+        position: relative; /* Necessary for label positioning */
+        margin-bottom: 20px; /* Space between form groups */
+    }
+
+    .form__input {
+        width: 100%;
+        padding: 10px; /* Padding inside input */
+        border: 1px solid #ccc; /* Border styling */
+        border-radius: 5px; /* Rounded corners */
+        font-size: 1rem; /* Font size */
+        transition: border-color 0.3s; /* Smooth border color transition */
+    }
+
+    .form__input:focus {
+        border-color: #007bff; /* Change border color on focus */
+        outline: none; /* Remove default outline */
+    }
+
+    .form__label {
+        position: absolute; /* Positioning label */
+        top: 10px; /* Space from top */
+        left: 10px; /* Space from left */
+        transition: 0.2s; /* Smooth transition for floating effect */
+        font-size: 1rem; /* Label font size */
+        color: #999; /* Initial label color */
+    }
+
+    .form__input:focus + .form__label,
+    .form__input:not(:placeholder-shown) + .form__label {
+        top: -10px; /* Move label up */
+        left: 10px; /* Position label */
+        font-size: 0.8rem; /* Smaller font size */
+        color: #007bff; /* Change label color */
+    }
+
+    .btn {
+        display: inline-block;
+        font-size: 1.2rem;
+        font-weight: bold;
+        padding: 12px 20px; /* Padding for button */
+        color: #fff;
+        text-decoration: none;
+        background-color: #28a745; /* Green button */
+        border: none; /* Remove border */
+        border-radius: 5px; /* Rounded corners */
+        cursor: pointer; /* Pointer on hover */
+        transition: background-color 0.3s; /* Smooth background color change */
+    }
+
+    .btn:hover {
+        background-color: #218838; /* Darker green on hover */
+    }
+</style>
+
+{% endblock group_content %}

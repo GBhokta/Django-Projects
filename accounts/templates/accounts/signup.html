@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% load bootstrap3 %}
+{% block content %}
+<div class="container">
+    <h1 class="text-center mb-4">Create Your Account</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {% bootstrap_form form %}
+                        <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <small>Already have an account? <a href="{% url 'accounts:login' %}">Log In</a></small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Additional styles for the signup page */
+    body {
+        background: linear-gradient(120deg, #3b5998, #8b9dc3);
+        color: #fff;
+    }
+
+    .container {
+        margin-top: 5rem;
+        margin-bottom: 5rem;
+    }
+
+    .card {
+        border-radius: 15px;
+    }
+
+    .card-body {
+        padding: 2rem;
+    }
+
+    h1 {
+        font-family: 'Arial', sans-serif;
+        font-weight: 300;
+    }
+
+    button.btn-primary {
+        background-color: #4267B2; /* Facebook blue */
+        border: none;
+        border-radius: 5px;
+        padding: 0.75rem;
+        font-size: 1rem;
+        transition: background-color 0.3s;
+    }
+
+    button.btn-primary:hover {
+        background-color: #365899; /* Darker blue on hover */
+    }
+</style>
+
+{% endblock content %}

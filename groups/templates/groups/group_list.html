@@ -1,0 +1,134 @@
+{% extends "group_base.html" %}
+
+{% block pregroup %}
+<div class="col-md-4">
+    <div class="content">
+        {% if user.is_authenticated %}
+            <h2 class="welcome-message">Welcome Back, 
+                <a href="{% url 'posts:for_user' username=user.username %}" class="username-link">@{{ user.username }}</a>
+            </h2>
+        {% endif %}
+        <h2 class="section-title">Groups</h2>
+        <p class="intro-text">Explore and connect with groups that share your interests.</p>
+    </div>
+    {% if user.is_authenticated %}
+        <a href="{% url 'groups:create' %}" class="btn btn-md btn-fill btn-warning create-group-btn">
+            <span class="glyphicon glyphicon-plus-sign"></span> Create New Group
+        </a>
+    {% endif %}
+</div>
+{% endblock pregroup %}
+
+{% block group_content %}
+<div class="col-md-8">
+    <div class="list-group">
+        {% for group in object_list %}
+            <a class="list-group-item group-card" href="{% url 'groups:single' slug=group.slug %}">
+                <h3 class="group-title">{{ group.name }}</h3>
+                <div class="group-description">
+                    {{ group.description_html | safe }}
+                    <div class="group-stats">
+                        <div class="stat">
+                            <span class="badge">{{ group.members.count }}</span>
+                            member{{ group.members.count | pluralize }}
+                        </div>
+                        <div class="stat">
+                            <span class="badge">{{ group.posts.count }}</span>
+                            post{{ group.posts.count | pluralize }}
+                        </div>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock group_content %}
+
+{% block extra_css %}
+<style>
+    /* Custom Styles */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f8f9fa;
+        color: #343a40;
+    }
+
+    .welcome-message {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        color: #343a40;
+    }
+
+    .username-link {
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .username-link:hover {
+        color: #0056b3;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        color: #495057;
+    }
+
+    .intro-text {
+        font-size: 1.1rem;
+        color: #6c757d;
+    }
+
+    .create-group-btn {
+        margin-top: 20px;
+        background-color: #ffc107;
+        border: none;
+        transition: background-color 0.3s;
+    }
+
+    .create-group-btn:hover {
+        background-color: #e0a800;
+    }
+
+    .group-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        transition: box-shadow 0.3s;
+        padding: 15px;
+        text-decoration: none;
+    }
+
+    .group-card:hover {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .group-title {
+        font-size: 1.5rem;
+        color: #007bff;
+    }
+
+    .group-description {
+        font-size: 1rem;
+        color: #495057;
+    }
+
+    .group-stats {
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .stat {
+        font-size: 0.9rem;
+    }
+
+    .badge {
+        background-color: #007bff;
+        color: #ffffff;
+        border-radius: 4px;
+        padding: 5px 10px;
+    }
+</style>
+{% endblock extra_css %}
